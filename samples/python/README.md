@@ -2,6 +2,7 @@
 This is a sample python app that demonstrates integration with ide.vim.
 The sample uses `pipenv` to manage virtual environments for python. If you
 want to set up `pipenv`, do:
+
     # install pipenv globally for the user
     pip install --user pipenv 
     # create a new virtual environment for a project
