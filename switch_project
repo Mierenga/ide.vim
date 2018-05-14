@@ -6,7 +6,7 @@
 # Argument for the project path to set as the current active project:
 PROJECT_PATH=$1
 # Path to this plugin's directory:
-PLUGIN_PATH=~/.vim/plugin/ide
+PLUGIN_PATH=~/.vim/plugin/vimide
 # Path to the configuration this file will generate
 PLUGINVIMRC=$PLUGIN_PATH/ide.vim
 # Path to the keymap definition used to generate the keymaps

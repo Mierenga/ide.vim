@@ -11,9 +11,9 @@ endif
 
 function RewriteIdeConfig(projpath)
     " rewrite the project configuration using the switch_project generator script
-    execute '!~/.vim/plugin/ide/switch_project' a:projpath
+    execute '!~/.vim/plugin/vimide/switch_project' a:projpath
     " reload the new project configuration
-    :source ~/.vim/plugin/ide/ide.vim
+    :source ~/.vim/plugin/vimide/ide.vim
 endfunction
 
 
