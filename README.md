@@ -44,8 +44,6 @@ run `tail -f` on the desired log.
 The `make test` command from the python sample redirects its output to 
 a file that is viewable with `make tail-test`.
 
-`logging.yaml` is a logging config intended to be read into a python
-
 # Samples
 A python sample Makefile along with a logging.yaml config file that it
 would be used with is included in the `samples/python` folder.

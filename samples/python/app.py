@@ -1,8 +1,6 @@
 import logging
 from util import log
 
-#logging.basicConfig(level=logging.DEBUG)
-
 log.setup_logging()
 logger = logging.getLogger(__name__)
 
