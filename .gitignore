@@ -1,5 +1,7 @@
-ide.vim
 **/log
 *.pyc
 *.pyo
 *.swp
+ide.vim
+**/Pipfile.lock
+

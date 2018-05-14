@@ -3,7 +3,7 @@
 SHELL=/bin/sh
 ###############################################################################
 APP_NAME=newproj1
-APP_PATH=.
+APP_PATH=~/.vim/vimide/samples/python
 ###############################################################################
 # in-project log path
 LOG_PATH=$(APP_PATH)/log

@@ -13,7 +13,7 @@ PLUGINVIMRC=$PLUGIN_PATH/ide.vim
 KEYMAPCONFIG=$PLUGIN_PATH/keys.config
 # Path the static functions that need to be loaded 
 # in the plugin configuration
-STATICFUNCTIONS=./static.functions
+STATICFUNCTIONS=$PLUGIN_PATH/static.functions
 ################################################################################
 # Load the key map configuration
 # (source of variables $KEY_* below)
