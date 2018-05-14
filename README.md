@@ -1,5 +1,5 @@
-ide.vim
-=======
+vimide
+======
 
 # What is it?
 A vim plugin intended to add features to vim to make development tasks easier
