@@ -1,0 +1,21 @@
+" VIM functions "
+
+""" Only load these functions once
+if exists('g:ide_static_functions')
+    finish
+endif
+
+""" TODO support for adding a "key" argument to SwitchProject 
+""" so we can switch by project key instead of path
+:command! -nargs=1 SwitchProject call RewriteIdeConfig(<f-args>) <bar> redraw
+
+function RewriteIdeConfig(projpath)
+    " rewrite the project configuration using the switch_project generator script
+    execute '!~/.vim/plugin/ide/switch_project' a:projpath
+    " reload the new project configuration
+    :source ~/.vim/plugin/ide/ide.vim
+endfunction
+
+
+""" Set the load-once flag
+let g:ide_static_functions = 1
