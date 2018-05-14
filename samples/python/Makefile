@@ -3,7 +3,7 @@
 SHELL=/bin/sh
 ###############################################################################
 APP_NAME=newproj1
-APP_PATH=~/.vim/vimide/samples/python
+APP_PATH=~/.vim/plugin/vimide/samples/python
 ###############################################################################
 # in-project log path
 LOG_PATH=$(APP_PATH)/log
@@ -41,15 +41,15 @@ clean-pyc:
 clean: clean-pyc 
 
 test: setup
-	touch $(TEST_LOG)
+	@touch $(TEST_LOG)
 	@echo '' >> $(TEST_LOG)
 	@echo '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' >> $(TEST_LOG)
 	@echo '' >> $(TEST_LOG)
-	@pipenv run python -u -m unittest discover > $(TEST_LOG) 2>&1 &
+	@cd $(APP_PATH) && pipenv run python -u -m unittest discover > $(TEST_LOG) 2>&1 &
 
 run: kill
 	@touch $(RUN_LOG)
-	@pipenv run python -u app.py > $(RUN_LOG) 2>&1 &
+	@cd $(APP_PATH) && pipenv run python -u app.py > $(RUN_LOG) 2>&1 &
 
 kill: setup
 	@echo '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' >> $(INFO_LOG)
