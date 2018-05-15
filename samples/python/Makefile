@@ -4,7 +4,6 @@ SHELL=/bin/sh
 ###############################################################################
 APP_NAME=newproj1
 APP_PATH=~/.vim/plugin/vimide/samples/python
-###############################################################################
 # in-project log path
 LOG_PATH=$(APP_PATH)/log
 # alt log path (e.g., logging to RAM disk)
@@ -33,14 +32,7 @@ TEST_LOG=$(LOG_PATH)/test.log
 setup:
 	@mkdir -p $(LOG_PATH)
 
-clean-pyc:
-	find . -name '*.pyc' -exec rm --force {} +
-	find . -name '*.pyo' -exec rm --force {} +
-	find . -name '*~' -exec rm --force {} +
-
-clean: clean-pyc 
-
-test: setup
+test: log-separator
 	@touch $(TEST_LOG)
 	@echo '' >> $(TEST_LOG)
 	@echo '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' >> $(TEST_LOG)
@@ -51,37 +43,44 @@ run: kill
 	@touch $(RUN_LOG)
 	@cd $(APP_PATH) && pipenv run python -u app.py > $(RUN_LOG) 2>&1 &
 
-kill: setup
+kill: log-separator
+	-pkill python
+
+###############################################################################
+# view log files
+###############################################################################
+define tail_file
+	@touch $(1)
+	@# output tail stderr to /dev/null ("file truncated...")
+	-@tail -f $(1) 2> /dev/null
+endef
+tail-console: setup
+	$(call tail_file, $(RUN_LOG))
+tail-info: setup
+	$(call tail_file, $(INFO_LOG))
+tail-debug: setup
+	$(call tail_file, $(DEBUG_LOG))
+tail-warning: setup
+	$(call tail_file, $(WARNING_LOG))
+tail-error: setup
+	$(call tail_file, $(ERROR_LOG))
+tail-test: setup
+	$(call tail_file, $(TEST_LOG))
+###############################################################################
+
+clean-pyc:
+	find . -name '*.pyc' -exec rm --force {} +
+	find . -name '*.pyo' -exec rm --force {} +
+	find . -name '*~' -exec rm --force {} +
+
+clean: clean-pyc 
+
+log-separator: setup
 	@echo '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' >> $(INFO_LOG)
 	@echo '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' >> $(DEBUG_LOG)
 	@echo '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' >> $(WARNING_LOG)
 	@echo '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' >> $(ERROR_LOG)
 	@echo '^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^' >> $(RUN_LOG)
-	-pkill python
-
-tail-console: setup
-	@touch $(RUN_LOG)
-	-@tail -f $(RUN_LOG) 2> /dev/null
-
-tail-info: setup
-	@touch $(INFO_LOG)
-	-@tail -f $(INFO_LOG) 2> /dev/null
-
-tail-debug: setup
-	@touch $(DEBUG_LOG)
-	-@tail -f $(DEBUG_LOG) 2> /dev/null
-
-tail-warning: setup
-	@touch $(WARNING_LOG)
-	-@tail -f $(WARNING_LOG) 2> /dev/null
-
-tail-error: setup
-	@touch $(ERROR_LOG)
-	-@tail -f $(ERROR_LOG) 2> /dev/null
-
-tail-test: setup
-	@touch $(TEST_LOG)
-	-@tail -f $(TEST_LOG) 2> /dev/null
 
 help:
 	@echo 'read the Makefile :/'

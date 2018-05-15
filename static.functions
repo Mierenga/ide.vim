@@ -1,9 +1,10 @@
 " VIM functions "
-
+""""""""""""""""""""""""""""""""""""""""
 """ Only load these functions once
 if exists('g:ide_static_functions')
     finish
 endif
+""""""""""""""""""""""""""""""""""""""""
 
 """ TODO support for adding a "key" argument to SwitchProject 
 """ so we can switch by project key instead of path
@@ -17,5 +18,7 @@ function RewriteIdeConfig(projpath)
 endfunction
 
 
+""""""""""""""""""""""""""""""""""""""""
 """ Set the load-once flag
 let g:ide_static_functions = 1
+""""""""""""""""""""""""""""""""""""""""
